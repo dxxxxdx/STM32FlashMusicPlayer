@@ -145,9 +145,6 @@ int main(void)
     switchApp(&appManager, APP_FLASH_DOWNLOADER);
     goto MAINWHILE;
   }
-
-
-
   HAL_TM8211_Init(&tm8211);
   musicPlayerInit(&musicPlayer, &tm8211, &w25q64, vMusicMem);
   appManagerInit(&appManager,&downloader, &musicPlayer);
@@ -161,7 +158,6 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-
   MAINWHILE:
   while (1)
   {
