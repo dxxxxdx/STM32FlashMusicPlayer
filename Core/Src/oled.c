@@ -43,6 +43,18 @@ void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef* hi2c)
         g_oled.transmitCallback(&g_oled);
     }
 }
+
+static void OLED_DmaErrorCallback(void)
+{
+}
+
+void HAL_I2C_ErrorCallback(I2C_HandleTypeDef* hi2c)
+{
+    if (hi2c == &hi2c2 && (HAL_I2C_GetError(hi2c) & HAL_I2C_ERROR_DMA) != 0U) {
+        OLED_DmaErrorCallback();
+    }
+}
+
 oledBuffer g_oledBuffer  __attribute__((aligned(4))) = {0};
 
 OLED g_oled = {
